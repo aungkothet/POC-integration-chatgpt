@@ -1,9 +1,10 @@
 'use client'
+// import Messages from '@/component/messages'
 import { useState } from 'react'
 
-export default function Home() {
-  const [to, setTo] = useState('');
-  const [message, setMessage] = useState('');
+export default  function Home() {
+  const [to, setTo] = useState('')
+  const [message, setMessage] = useState('')
 
   const sendMessage = async () => {
     const res = await fetch('/api/line/sendMessage', {
@@ -12,14 +13,14 @@ export default function Home() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ to, message }),
-    });
+    })
 
     if (res.ok) {
-      alert('Message sent!');
+      alert('Message sent!')
     } else {
-      alert('Failed to send message');
+      alert('Failed to send message')
     }
-  };
+  }
 
   return (
     <div>
@@ -37,6 +38,8 @@ export default function Home() {
         onChange={(e) => setMessage(e.target.value)}
       />
       <button onClick={sendMessage}>Send</button>
+
+      {/* <Messages></Messages> */}
     </div>
-  );
+  )
 }
