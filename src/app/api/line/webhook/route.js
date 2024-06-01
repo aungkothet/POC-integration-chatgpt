@@ -1,9 +1,10 @@
+import chatMessageModel from '@/models/chatMessageModel'
+
 export async function POST(req, res) {
   const events = await req.json()
-  // Handle events
-  events.events.forEach((event) => {
+
+  for( const event of events.events){
     if (event.type === 'message' && event.message.type === 'text') {
-      // Handle text message
       console.log('Received message event: ', event);
       /* event data sample 
       {
@@ -24,7 +25,9 @@ export async function POST(req, res) {
       */
       console.log('Received message:', event.message.text);
       // Do save message to db here.
+      const newChatMessageModel = new chatMessageModel(event);
+      const savedModel = await newChatMessageModel.save();
     }
-  });  
+  }
   return Response.json({ status: 200, message: 'OK.' })
 }
