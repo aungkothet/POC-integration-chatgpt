@@ -1,11 +1,12 @@
+import chatMessageModel from '@/models/chatMessageModel'
 import axios from 'axios'
 
-const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message/push'
-const LINE_ACCESS_TOKEN = process.env.LINE_ACCESS_TOKEN // Use environment variable for security
+const LINE_MESSAGING_API = process.env.LINE_MESSAGING_API
+const LINE_ACCESS_TOKEN = process.env.LINE_ACCESS_TOKEN
 
 export async function POST(req, res) {
+  // Uddb6ac82e0f9e9ced58026a85e6d0f05
   const { to, message } = await req.json()
-  console.log(to, message);
   try {
     const response = await axios.post(
       LINE_MESSAGING_API,
@@ -25,21 +26,29 @@ export async function POST(req, res) {
         },
       }
     )
-    /*
-sample response data 
-{
-  sentMessages: [
-    {
-      id: '510693931936121116',
-      quoteToken: 'DYA90eW8V221zBumMsuo97f6_rFvBGEt5N4KR1k-iZ7Wh5As_xCDVuypyQoGpBaS7haTrLtFxSaLA9fbhPTw3GyT59-H4Sgw2FcZbLGNaBS6WbGG7T87QmmFWIL4VbvNvLxABIAQfSNeuG-4E68f-Q'
+
+    const { id, quoteToken } = response.data.sentMessages
+    const systemChatMsg = {
+      type: 'message',
+      message: {
+        type: 'text',
+        id: id,
+        quoteToken: quoteToken,
+        text: message,
+      },
+      webhookEventId: '',
+      deliveryContext: { isRedelivery: false },
+      timestamp: new Date().getTime(),
+      source: { type: 'system', userId: 'System' },
+      replyToken: '',
+      mode: 'active',
     }
-  ]
-}
-    */
-    console.log(response.data);
-    return Response.json({ status: 200, data: response.data })
+
+    const newChatMessageModel = new chatMessageModel(systemChatMsg)
+    await newChatMessageModel.save()
+    return Response.status(200).json({ status: 200, data: response.data })
   } catch (error) {
-    console.log("error: ", error);
-    return Response.json({ status: 500, error: error.message })
+    console.log('error: ', error)
+    return Response.status(500).json({ status: 500, error: error.message })
   }
 }

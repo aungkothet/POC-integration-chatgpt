@@ -21,10 +21,10 @@ const chatMessageSchema = new Schema(
     type: String,
     message: {
       type: MessageSchema,
-      required: true
+      required: true,
     },
     webhookEventId: String,
-    deliveryContext: ReDeliverySchema ,
+    deliveryContext: ReDeliverySchema,
     source: SourceSchema,
     replyToken: String,
     mode: String,

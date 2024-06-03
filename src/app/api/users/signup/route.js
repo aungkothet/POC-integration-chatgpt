@@ -1,4 +1,3 @@
-
 import connectDb from '@/config/database'
 import User from '@/models/UserModel'
 import bcryptjs from 'bcryptjs'

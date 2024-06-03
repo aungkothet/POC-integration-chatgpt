@@ -1,5 +1,5 @@
 'use client'
-// import Messages from '@/component/messages'
+import NavBar from '@/components/NavBarComponent'
 import { useState } from 'react'
 
 export default  function Home() {
@@ -23,6 +23,8 @@ export default  function Home() {
   }
 
   return (
+    <>
+    <NavBar/>
     <div>
       <h1>Send Message to LINE</h1>
       <input
@@ -38,8 +40,8 @@ export default  function Home() {
         onChange={(e) => setMessage(e.target.value)}
       />
       <button onClick={sendMessage}>Send</button>
-
-      {/* <Messages></Messages> */}
     </div>
+    </>
+    
   )
 }
