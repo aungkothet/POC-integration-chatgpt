@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import Image from 'next/image'
+import LineScanImage from '@/components/LineScanImageComponent'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -42,7 +43,7 @@ export default function SignupPage() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create an account
             </h1>
-            <div className="space-y-4 md:space-y-6" >
+            <div className="space-y-4 md:space-y-6">
               <div>
                 <label
                   htmlFor="email"
@@ -76,7 +77,9 @@ export default function SignupPage() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                   value={user.password}
-                  onChange={(e) => setUser({ ...user, password: e.target.value })}
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
                 />
               </div>
               <div>
@@ -94,7 +97,9 @@ export default function SignupPage() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                   value={user.confirm_password}
-                  onChange={(e) => setUser({ ...user, confirm_password: e.target.value })}
+                  onChange={(e) =>
+                    setUser({ ...user, confirm_password: e.target.value })
+                  }
                 />
               </div>
               <div className="flex items-start">
@@ -112,7 +117,7 @@ export default function SignupPage() {
                     htmlFor="terms"
                     className="font-light text-gray-500 dark:text-gray-300"
                   >
-                    I accept the 
+                    I accept the
                     <a
                       className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                       href="#"
@@ -130,10 +135,16 @@ export default function SignupPage() {
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?
-                <Link href="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500 ms-3">Login here</Link>
+                <Link
+                  href="/login"
+                  className="font-medium text-primary-600 hover:underline dark:text-primary-500 ms-3"
+                >
+                  Login here
+                </Link>
               </p>
             </div>
           </div>
+          <LineScanImage/>
         </div>
       </div>
     </section>

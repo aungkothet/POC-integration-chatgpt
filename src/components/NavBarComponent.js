@@ -61,11 +61,11 @@ export default function NavBar() {
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             <li>
               <Link
-                href="/messages"
+                href="/messages/line"
                 className="block py-2 px-3 text-main rounded md:bg-transparent md:p-0"
                 aria-current="page"
               >
-                Messages
+                Line Messages
               </Link>
             </li>
             <li>
