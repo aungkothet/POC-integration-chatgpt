@@ -1,4 +1,5 @@
 'use client'
+import FacebookMessenger from '@/components/FacebookMsg'
 import NavBar from '@/components/NavBarComponent'
 import { useState } from 'react'
 
@@ -41,6 +42,7 @@ export default  function Home() {
       />
       <button onClick={sendMessage}>Send</button>
     </div>
+    <FacebookMessenger></FacebookMessenger>
     </>
     
   )
