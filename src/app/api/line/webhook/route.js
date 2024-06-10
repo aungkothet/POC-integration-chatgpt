@@ -1,9 +1,10 @@
+import getAutomateResponse from '@/_actions/getChatGPTResponse';
+import sendLineReply from '@/_actions/sendLineReplyMessage';
 import LineMessageModel from '@/models/LineMessageModel'
 
 export async function POST(req, res) {
   const events = await req.json()
-
-  for( const event of events.events){
+  for (const event of events.events) {
     if (event.type === 'message' && event.message.type === 'text') {
       console.log('Received message event: ', event);
       /* event data sample 
@@ -24,13 +25,32 @@ export async function POST(req, res) {
       }
       */
       console.log('Received message:', event.message.text);
-      // Do save message to db here.
-      const newLineMessage = new LineMessageModel({
-        from: event.source.userId,
-        to: 'System',
-        Chats:event
-      });
-      const savedModel = await newLineMessage.save();
+      if (!event.deliveryContext.isRedelivery) {
+        // Do save message to db here.
+        const newLineMessage = new LineMessageModel({
+          from: event.source.userId,
+          to: 'System',
+          Chats: event
+        });
+        const savedModel = await newLineMessage.save();
+
+        // send request to ChatGPT
+        const gptChoicesAry = await getAutomateResponse(event.message.text)
+
+        console.log("webhook: ", gptChoicesAry);
+
+        let replyMessages = "";
+
+        gptChoicesAry.forEach((choice) => {
+          replyMessages += choice.message.content;
+        });
+
+        // send response back to user
+        const sendLineReplyResponse = await sendLineReply(event.source.userId, replyMessages);
+
+      }
+      // console.log(sendLineReplyResponse);
+
     }
   }
   return Response.json({ status: 200, message: 'OK.' })

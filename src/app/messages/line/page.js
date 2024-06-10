@@ -45,7 +45,7 @@ export default function MessagePage() {
             </ul>
           </div>
           {current && (
-            <div className="bg-white p-6 max-h-screen h-full border rounded mt-5">
+            <div className="bg-white p-6 max-h-96 h-full border rounded mt-5 overflow-y-auto">
               <h2 className="text-xl font-bold mb-4">Full Conversation Between System and User</h2>
               <LineMessageList data={current.messages} />
             </div>
