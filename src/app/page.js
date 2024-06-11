@@ -1,4 +1,6 @@
 'use client'
+
+import FacebookMessenger from '@/components/FacebookMsg'
 import LineScanImage from '@/components/LineScanImageComponent'
 import NavBar from '@/components/NavBarComponent'
 import { useState } from 'react'
@@ -88,6 +90,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+       <FacebookMessenger></FacebookMessenger>
     </>
   )
 }
