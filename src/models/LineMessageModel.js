@@ -7,22 +7,18 @@ const MessageSchema = new Schema({
   text: String,
 })
 
-const ReDeliverySchema = new Schema({
-  isRedelivery: Boolean,
-})
-
 const SourceSchema = new Schema({
   type: String,
   userId: String,
 })
+const ReDeliverySchema = new Schema({
+  isRedelivery: Boolean,
+})
 
-const chatMessageSchema = new Schema(
+const LineMessageSchema = new Schema(
   {
     type: String,
-    message: {
-      type: MessageSchema,
-      required: true,
-    },
+    message: MessageSchema,
     webhookEventId: String,
     deliveryContext: ReDeliverySchema,
     source: SourceSchema,
@@ -32,7 +28,13 @@ const chatMessageSchema = new Schema(
   { timestamps: true }
 )
 
-const chatMessageModel =
-  models.chatmessages || model('chatmessages', chatMessageSchema)
+const ChatSchema = new Schema({
+  from: String,
+  to: String,
+  Chats: LineMessageSchema,
+})
 
-export default chatMessageModel
+const LineMessageModel =
+  models?.LineMessage || model('LineMessage', ChatSchema)
+
+export default LineMessageModel

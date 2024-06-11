@@ -1,4 +1,4 @@
-import chatMessageModel from '@/models/chatMessageModel'
+import LineMessageModel from '@/models/LineMessageModel'
 
 export async function POST(req, res) {
   const events = await req.json()
@@ -25,8 +25,12 @@ export async function POST(req, res) {
       */
       console.log('Received message:', event.message.text);
       // Do save message to db here.
-      const newChatMessageModel = new chatMessageModel(event);
-      const savedModel = await newChatMessageModel.save();
+      const newLineMessage = new LineMessageModel({
+        from: event.source.userId,
+        to: 'System',
+        Chats:event
+      });
+      const savedModel = await newLineMessage.save();
     }
   }
   return Response.json({ status: 200, message: 'OK.' })

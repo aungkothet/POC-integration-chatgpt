@@ -1,5 +1,6 @@
-import chatMessageModel from '@/models/chatMessageModel'
+import LineMessageModel from '@/models/LineMessageModel'
 import axios from 'axios'
+import { NextResponse } from 'next/server'
 
 const LINE_MESSAGING_API = process.env.LINE_MESSAGING_API
 const LINE_ACCESS_TOKEN = process.env.LINE_ACCESS_TOKEN
@@ -39,16 +40,20 @@ export async function POST(req, res) {
       webhookEventId: '',
       deliveryContext: { isRedelivery: false },
       timestamp: new Date().getTime(),
-      source: { type: 'system', userId: 'System' },
+      source: { type: 'system', userId: to },
       replyToken: '',
       mode: 'active',
     }
-
-    const newChatMessageModel = new chatMessageModel(systemChatMsg)
-    await newChatMessageModel.save()
-    return Response.status(200).json({ status: 200, data: response.data })
+    const LineMessage = {
+      from: 'System',
+      to: to,
+      Chats: systemChatMsg,
+    }
+    const newLineMessage = new LineMessageModel(LineMessage)
+    await newLineMessage.save()
+    return NextResponse.json({ data: response.data }, { status: 200 })
   } catch (error) {
     console.log('error: ', error)
-    return Response.status(500).json({ status: 500, error: error.message })
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

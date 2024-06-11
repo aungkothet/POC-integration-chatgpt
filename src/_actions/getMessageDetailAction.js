@@ -1,7 +1,8 @@
-import chatMessageModel from '@/models/chatMessageModel'
+import LineMessageModel from '@/models/LineMessageModel'
 
 export async function getMessageDetail(id) {
-  const data = JSON.parse(JSON.stringify(await chatMessageModel.findById(id)))
+  const mData = JSON.stringify(await LineMessageModel.findById(id));
+  const data = JSON.parse(mData)
   if (data) {
     return { data }
   } else {
