@@ -20,14 +20,16 @@ export async function GET(req, res) {
   return NextResponse.json({ error: "WebHook Not Verified" }, { status: 403 })
 }
 
+const fs = require('fs');
+
 export async function POST(req, res) {
   const body = await req.json()
   console.log("Facebook Event Received")
   console.log(body);
+  fs.appendFileSync('logs.txt', JSON.stringify(body)+' \n');
   if (body.object === "page") {
     return Response.json({ status: 200, message: 'Event Received' })
   } else {
     return NextResponse.json({ error: "event is not from a page subscription" }, { status: 404 })
   }
-  return Response.json({ status: 200, message: 'OK.' })
 }
