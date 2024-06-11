@@ -22,11 +22,17 @@ export async function GET(req, res) {
 
 const fs = require('fs');
 
+import { put } from '@vercel/blob';
+
 export async function POST(req, res) {
   const body = await req.json()
   console.log("Facebook Event Received")
   console.log(body);
   fs.appendFileSync('logs.txt', JSON.stringify(body)+' \n');
+  let filename = new Date().getTime+".log";
+  const blob = await put(filename, JSON.stringify(body), {
+    access: 'public',
+  });
   if (body.object === "page") {
     return Response.json({ status: 200, message: 'Event Received' })
   } else {
