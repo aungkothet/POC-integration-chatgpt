@@ -86,11 +86,13 @@ export default function Home() {
                 </button>
               </div>
             </div>
+            <div className="flex flex-row items-center justify-center">
             <LineScanImage />
+            <FacebookMessenger></FacebookMessenger>
+            </div>
           </div>
         </div>
       </section>
-      <FacebookMessenger></FacebookMessenger>
     </>
   )
 }
