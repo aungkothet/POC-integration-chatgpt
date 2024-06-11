@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 
 export async function GET(req, res) {
     const query = req.nextUrl.searchParams
-    const VERIFY_TOKEN = process.env.VERIFY_TOKEN
+    const VERIFY_TOKEN = "4lw3GW8EbVzCAdgtMOe7JxwoP"
+    // const VERIFY_TOKEN = process.env.VERIFY_TOKEN
       // Parse the query params
     const mode = query.get('hub.mode');
     const token = query.get('hub.verify_token');
