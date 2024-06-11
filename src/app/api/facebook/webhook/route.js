@@ -11,8 +11,7 @@ export async function GET(req, res) {
 
     if (mode && token) {
     if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-        console.log('WEBHOOK_VERIFIED');
-        return NextResponse.json(challenge, { status: 200 })
+        return NextResponse.json(parseInt(challenge), { status: 200 })
     } else {
         console.log('WEBHOOK_NOT_VERIFIED');
         return NextResponse.json({error:"WebHook Not Verified"},{ status: 403 })
