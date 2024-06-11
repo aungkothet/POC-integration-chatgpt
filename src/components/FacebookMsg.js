@@ -1,10 +1,11 @@
 'use client'
-import { FacebookProvider, CustomChat } from 'react-facebook'
+import { FacebookProvider, CustomChat, MessageUs } from 'react-facebook'
 
 export default function FacebookMessenger() {
   return (
-    <FacebookProvider appId="416029255554876" chatSupport>
-      <CustomChat pageId="103277147693547"  />
+    <FacebookProvider appId="463019672993775" chatSupport>
+      <CustomChat pageId="320206154518049"  />
+      {/* <MessageUs messengerAppId="2265852817095450" pageId="123456789"/> */}
     </FacebookProvider>
   )
 }
