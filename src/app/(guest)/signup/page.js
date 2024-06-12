@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import Image from 'next/image'
 import LineScanImage from '@/components/LineScanImageComponent'
+import FacebookMessenger from '@/components/FacebookMsg'
+
 
 export default function SignupPage() {
   const router = useRouter()
@@ -144,7 +146,10 @@ export default function SignupPage() {
               </p>
             </div>
           </div>
-          <LineScanImage/>
+          <div className="flex flex-row items-center justify-center">
+            <LineScanImage />
+            <FacebookMessenger></FacebookMessenger>
+          </div>
         </div>
       </div>
     </section>
