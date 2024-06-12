@@ -13,6 +13,7 @@ export default async function MessageDetail({ params }){
         <>
         <h1>Message Detail for {params._id}</h1>
         <p>{data.Chats.message.text} {data.Chats.source.userId}</p>
+        <p>{data.Chats.createdAt}</p>
         </>
     ) 
 }
