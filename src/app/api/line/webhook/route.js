@@ -1,6 +1,34 @@
-import getAutomateResponse from '@/_actions/getChatGPTResponse';
-import sendLineReply from '@/_actions/sendLineReplyMessage';
 import LineMessageModel from '@/models/LineMessageModel'
+import axios from 'axios'
+const origin = process.env.ORIGIN;
+
+async function sendPrompt(message) {
+  try {
+    const response = await axios({
+      method: "POST",
+      data: {
+        message: message,
+      },
+      url: origin + "/api/openai/sendPrompt",
+    })
+    return response.data.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async function sendLineReply(to, message) {
+  try {
+    const response = await axios({
+      method: "POST",
+      data: { to, message },
+      url: origin + "/api/line/sendMessage",
+    })
+    console.log('Line Reply Message Send')
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 export async function POST(req, res) {
   const events = await req.json()
@@ -35,23 +63,18 @@ export async function POST(req, res) {
         const savedModel = await newLineMessage.save();
 
         // send request to ChatGPT
-        const gptChoicesAry = await getAutomateResponse(event.message.text)
-
-        console.log("webhook: ", gptChoicesAry);
-
+        let gptChoicesAry = await sendPrompt(event.message.text)
+        console.log("OpenAI response: ", gptChoicesAry);
         let replyMessages = "";
-
         gptChoicesAry.forEach((choice) => {
           replyMessages += choice.message.content;
         });
-
         // send response back to user
-        const sendLineReplyResponse = await sendLineReply(event.source.userId, replyMessages);
-
+        await sendLineReply(event.source.userId, replyMessages)
       }
-      // console.log(sendLineReplyResponse);
-
     }
   }
   return Response.json({ status: 200, message: 'OK.' })
 }
+
+
