@@ -1,5 +1,5 @@
 'use client'
-import { getLineMessages } from '@/_actions/getLineMessageAction'
+import axios from 'axios'
 import LineMessageItem from '@/components/LineMessageItemComponent'
 import LineMessageList from '@/components/LineMessageListComponent'
 import { useEffect, useState } from 'react'
@@ -10,8 +10,8 @@ export default function MessagePage() {
 
   useEffect(() => {
     const getMessageData = async () => {
-      const { data, errorMsg } = await getLineMessages()
-      setMsgData(data)
+      const { data, errorMsg } = await axios.get('/api/line/getMessages')
+      setMsgData(data.data)
       setErrMsg(errorMsg)
     }
     getMessageData()
@@ -33,13 +33,12 @@ export default function MessagePage() {
             <ul>
               {msgData?.map((item) => (
                 <li
-                  className={`mb-2 rounded ${
-                    current?._id == item._id ? 'bg-primary-900 text-white' : ''
-                  }`}
+                  className={`mb-2 rounded ${current?._id == item._id ? 'bg-primary-900 text-white' : ''
+                    }`}
                   onClick={() => setCurrent(item)}
                   key={item._id}
                 >
-                  <LineMessageItem msg={item.lastMessage} /> {(current?._id == item._id) }
+                  <LineMessageItem msg={item.lastMessage} /> {(current?._id == item._id)}
                 </li>
               ))}
             </ul>
