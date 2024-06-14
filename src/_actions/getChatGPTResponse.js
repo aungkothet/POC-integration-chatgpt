@@ -8,7 +8,6 @@ export default async function getAutomateResponse(message) {
         messages: [{ role: "user", content: [{ type: "text", text: message }] }],
         model: "gpt-4o",
     });
-
     console.log("inside promise: ", completion);
     return completion.choices;
 }

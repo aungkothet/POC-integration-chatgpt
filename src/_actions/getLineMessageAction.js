@@ -16,9 +16,8 @@ export async function getLineMessages() {
         },
       },
     ])
-
     const data = JSON.parse(JSON.stringify(mData))
-    // console.log(JSON.stringify(mData))
+    console.log(JSON.stringify(mData))
     return { data }
   } catch (e) {
     console.log(e)

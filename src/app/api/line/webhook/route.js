@@ -49,7 +49,7 @@ export async function POST(req, res) {
         const sendLineReplyResponse = await sendLineReply(event.source.userId, replyMessages);
 
       }
-      // console.log(sendLineReplyResponse);
+      console.log(sendLineReplyResponse);
 
     }
   }
