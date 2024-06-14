@@ -1,4 +1,7 @@
 import LineMessageModel from '@/models/LineMessageModel'
+import connectDb from '@/config/database'
+
+connectDb()
 
 export async function getMessageDetail(id) {
   const mData = JSON.stringify(await LineMessageModel.findById(id));

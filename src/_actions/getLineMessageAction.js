@@ -1,7 +1,9 @@
 
 'use server'
 import LineMessageModel from '@/models/LineMessageModel'
+import connectDb from '@/config/database'
 
+connectDb()
 export async function getLineMessages() {
   try {
     const mData = await LineMessageModel.aggregate([

@@ -5,6 +5,10 @@ import axios from 'axios'
 const LINE_MESSAGING_API = process.env.LINE_MESSAGING_API
 const LINE_ACCESS_TOKEN = process.env.LINE_ACCESS_TOKEN
 
+import connectDb from '@/config/database'
+
+connectDb()
+
 export default async function sendLineReply(to, message) {
   const response = await axios.post(
     LINE_MESSAGING_API,
