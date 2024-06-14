@@ -1,7 +1,7 @@
 'use client'
-import { getLineMessages } from '@/_actions/getLineMessageAction'
-import LineMessageItem from '@/components/LineMessageItemComponent'
-import LineMessageList from '@/components/LineMessageListComponent'
+import { getFacebookMessages } from '@/_actions/getFacebookMessageAction'
+import FBMessageItem from '@/components/FBMessageItemComponent'
+import FBMessageList from '@/components/FBMessageListComponent'
 import { useEffect, useState } from 'react'
 
 export default function MessagePage() {
@@ -10,7 +10,7 @@ export default function MessagePage() {
 
   useEffect(() => {
     const getMessageData = async () => {
-      const { data, errorMsg } = await getLineMessages()
+      const { data, errorMsg } = await getFacebookMessages()
       setMsgData(data)
       setErrMsg(errorMsg)
     }
@@ -38,7 +38,7 @@ export default function MessagePage() {
                   onClick={() => setCurrent(item)}
                   key={item._id}
                 >
-                  <LineMessageItem msg={item.lastMessage} />
+                  <FBMessageItem msg={item.lastMessage} />
                 </li>
               ))}
             </ul>
@@ -46,7 +46,7 @@ export default function MessagePage() {
           {current && (
             <div className="bg-white p-6 max-h-96 h-full border rounded mt-5 overflow-y-auto">
               <h2 className="text-xl font-bold mb-4">Full Conversation Between System and User</h2>
-              <LineMessageList data={current.messages} />
+              <FBMessageList data={current.messages} />
             </div>
           )}
         </div>

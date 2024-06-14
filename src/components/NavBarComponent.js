@@ -68,6 +68,15 @@ export default function NavBar() {
                 Line Messages
               </Link>
             </li>
+            <li>
+              <Link
+                href="/messages/facebook"
+                className="block py-2 px-3 text-main rounded md:bg-transparent md:p-0"
+                aria-current="page"
+              >
+                Facebook Messages
+              </Link>
+            </li>
             <li className="cursor-pointer">
               <span
                 className="block py-2 px-3 text-main rounded md:bg-transparent md:p-0"
