@@ -1,6 +1,8 @@
+
+'use server'
 import LineMessageModel from '@/models/LineMessageModel'
 
-export async function GET(req, res) {
+export async function getLineMessages() {
   try {
     const mData = await LineMessageModel.aggregate([
       {
@@ -14,11 +16,9 @@ export async function GET(req, res) {
         },
       },
     ])
-
     const data = JSON.parse(JSON.stringify(mData))
-    // console.log(JSON.stringify(mData))
-    return Response.json({ data})
-    // return { data }
+    console.log(JSON.stringify(mData))
+    return { data }
   } catch (e) {
     console.log(e)
     return { errorMsg: e.message }
