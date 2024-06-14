@@ -5,9 +5,7 @@ import { NextResponse } from 'next/server'
 const LINE_MESSAGING_API = process.env.LINE_MESSAGING_API
 const LINE_ACCESS_TOKEN = process.env.LINE_ACCESS_TOKEN
 
-export async function POST(req, res) {
-  // Uddb6ac82e0f9e9ced58026a85e6d0f05
-  const { to, message } = await req.json()
+const sendLineMessage = async (to, message) => {
   try {
     const response = await axios.post(
       LINE_MESSAGING_API,
@@ -27,7 +25,6 @@ export async function POST(req, res) {
         },
       }
     )
-
     const { id, quoteToken } = response.data.sentMessages
     const systemChatMsg = {
       type: 'message',
@@ -49,11 +46,19 @@ export async function POST(req, res) {
       to: to,
       Chats: systemChatMsg,
     }
-    const newLineMessage = new LineMessageModel(LineMessage)
-    await newLineMessage.save()
-    return NextResponse.json({ data: response.data }, { status: 200 })
+    return LineMessage;
   } catch (error) {
     console.log('error: ', error)
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return "";
   }
+}
+export async function POST(req, res) {
+  // Uddb6ac82e0f9e9ced58026a85e6d0f05
+  const { to, message } = await req.json()
+  const LineMessage = await sendLineMessage(to, message);
+  if (LineMessage != "") {
+    const newLineMessage = new LineMessageModel(LineMessage)
+    await newLineMessage.save()
+  }
+  return NextResponse.json({ data: response.data }, { status: 200 })
 }

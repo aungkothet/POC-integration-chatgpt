@@ -9,5 +9,6 @@ export default async function getAutomateResponse(message) {
         model: "gpt-4o",
     });
     console.log("inside promise: ", completion);
+    
     return completion.choices;
 }
