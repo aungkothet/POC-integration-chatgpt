@@ -41,6 +41,8 @@ export async function POST(req, res) {
       type: "User",
       id: messageOuter.sender.id
     }
+    let replyMessages = "Hello, Welcome."
+    
     if(messageOuter.message != null){
       // normal message
       const newFbMessage = new FbMessageModel({
@@ -53,13 +55,10 @@ export async function POST(req, res) {
       const gptChoicesAry = await getAutomateResponse(messageOuter.message.text)
       // // console.log("FB webhook: ", gptChoicesAry);
   
-      let replyMessages = "";
+      replyMessages = "";
       gptChoicesAry.forEach((choice) => {
         replyMessages += choice.message.content;
       });
-    }else {
-      // postback message
-      let replyMessages = "Hello, Welcome."
     }
     
     // // console.log(replyMessages);
