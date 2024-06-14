@@ -1,5 +1,5 @@
 'use client'
-import axios from 'axios'
+import { getLineMessages } from '@/_actions/getLineMessageAction'
 import LineMessageItem from '@/components/LineMessageItemComponent'
 import LineMessageList from '@/components/LineMessageListComponent'
 import { useEffect, useState } from 'react'
@@ -10,8 +10,8 @@ export default function MessagePage() {
 
   useEffect(() => {
     const getMessageData = async () => {
-      const { data, errorMsg } = await axios.get('/api/line/getMessages')
-      setMsgData(data.data)
+      const { data, errorMsg } = await getLineMessages()
+      setMsgData(data)
       setErrMsg(errorMsg)
     }
     getMessageData()
