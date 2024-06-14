@@ -9,6 +9,7 @@ export async function GET(req, res) {
   const token = query.get('hub.verify_token');
   const challenge = query.get('hub.challenge');
 
+  console.log('FACEBOOK WEBHOOK RECEIVED');
   if (mode && token) {
     if (mode === 'subscribe' && token === VERIFY_TOKEN) {
       return NextResponse.json(parseInt(challenge), { status: 200 })
