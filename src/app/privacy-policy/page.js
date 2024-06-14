@@ -10,7 +10,7 @@ export default function Privacy() {
         <div class="container">
           <div class="tab-content translations-content-item en visible" id="en">
             <h1>Privacy Policy</h1>
-            <p>Last updated: June 14, 2024</p>
+            <p>Last updated: June 15, 2024</p>
             <p>
               This Privacy Policy describes Our policies and procedures on the
               collection, use and disclosure of Your information when You use
