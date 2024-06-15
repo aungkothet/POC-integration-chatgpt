@@ -1,7 +1,7 @@
 'use client'
 import { getFacebookMessages } from '@/_actions/getFacebookMessageAction'
-import FBMessageItem from '@/components/FBMessageItemComponent'
 import FBMessageList from '@/components/FBMessageListComponent'
+import MessageComponent from '@/components/MessageComponent'
 import { useEffect, useState } from 'react'
 
 export default function MessagePage() {
@@ -23,34 +23,31 @@ export default function MessagePage() {
   }
 
   return (
-    <>
-      <div className="">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="bg-white p-6 max-h-screen overflow-y-auto">
-            <h2 className="text-xl font-bold mb-4">
-              Click Conversation for detail
-            </h2>
-            <ul>
-              {msgData?.map((item) => (
-                <li
-                  className={`mb-2 rounded ${current?._id == item._id ? 'bg-primary-900 text-white' : ''
-                    }`}
-                  onClick={() => setCurrent(item)}
-                  key={item._id}
-                >
-                  <FBMessageItem msg={item.lastMessage} />
-                </li>
-              ))}
-            </ul>
+    <div class="grid grid-cols-3 gap-4 h-full py-3 ">
+      <div class="flex flex-col rounded">
+        <div class="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+          <div class="divide-y divide-gray-200">
+            {msgData?.map((item) => (
+              <div
+                className={`${current?._id == item._id ? 'bg-neutral-600 last:rounded-b first:rounded-t' : ''}`}
+                onClick={() => setCurrent(item)}
+                key={item._id}>
+                <MessageComponent
+                  text={item.lastMessage.Chats.entry[0].messaging[0].message.text}
+                  time={item.lastMessage.Chats.createdAt}
+                  platform="facebook"
+                  userId={item._id}
+                />
+              </div>
+            ))}
           </div>
-          {current && (
-            <div className="bg-white p-6 max-h-96 h-full border rounded mt-5 overflow-y-auto">
-              <h2 className="text-xl font-bold mb-4">Full Conversation Between System and User</h2>
-              <FBMessageList data={current.messages} />
-            </div>
-          )}
         </div>
       </div>
-    </>
+      {current && (
+        <div class="flex items-center col-span-2 justify-center rounded shadow-md bg-white bg-clip-border mb-3">
+          <FBMessageList data={current.messages} />
+        </div>
+      )}
+    </div>
   )
 }

@@ -4,7 +4,7 @@ export default function MessagePageLayout({ children }) {
   return (
     <>
       <NavBar />
-      <div class="px-2 sm:ml-64  h-screen">
+      <div class="p-4 sm:ml-64  h-screen">
         {children}
       </div>
     </>

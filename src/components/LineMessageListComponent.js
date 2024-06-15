@@ -1,14 +1,17 @@
-import Link from 'next/link'
-import LineMessageItem from './LineMessageItemComponent'
+import ChatItem from "./ChatMessageItemComponent";
 
 export default function LineMessageList({ data }) {
   return (
-    <ul className="max-w">
+    <div class="h-screen overflow-y-auto p-4 w-full">
       {data.map((msg) => (
-        <Link href={'/messages/line/' + msg._id} key={msg._id}>
-          <LineMessageItem msg={msg} />
-        </Link>
+        <ChatItem
+          key={msg._id}
+          isUser={(msg.from.toLowerCase() != 'system')}
+          text={msg.Chats.message.text}
+          time={msg.Chats.createdAt}
+          id={msg._id}
+        />
       ))}
-    </ul>
+    </div>
   )
 }

@@ -1,14 +1,18 @@
-import Link from 'next/link'
-import FBMessageItem from './FBMessageItemComponent'
+import ChatItem from "./ChatMessageItemComponent"
 
 export default function FBMessageList({ data }) {
+  const FB_PAGE_ID = process.env.FB_PAGE_ID
   return (
-    <ul className="max-w">
+    <div class="h-screen overflow-y-auto p-4 w-full">
       {data.map((msg) => (
-        // <Link href={'/messages/facebook/' + msg._id} key={msg._id}>
-          <FBMessageItem msg={msg} key={msg._id}/>
-        // </Link>
+        <ChatItem
+          isUser={(msg.Chats.entry[0].messaging[0].sender.id != FB_PAGE_ID)}
+          text={msg.Chats.entry[0].messaging[0].message.text}
+          time={msg.Chats.createdAt} 
+          id={msg._id}/>
       ))}
-    </ul>
+    </div>
   )
 }
+
+
