@@ -21,9 +21,9 @@ export default function NavBar() {
       })
   }
   return (
-    <aside class="fixed top-0 left-0 z-40 w-64 h-screen" aria-label="Sidebar">
-      <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-        <ul class="space-y-2 font-medium">
+    <aside className="fixed top-0 left-0 z-40 w-64 h-screen" aria-label="Sidebar">
+      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <ul className="space-y-2 font-medium">
           <li>
             <Link
               href="/"
@@ -51,7 +51,7 @@ export default function NavBar() {
                         5-1 10-1 15l-1 13c-1 4-1 8-2 12h-35v115h-52v-115
                         h-25v-39h25v-32z'/>
               </svg>
-              <span class="flex-1 ms-3 whitespace-nowrap">Facebook Messages</span>
+              <span className="flex-1 ms-3 whitespace-nowrap">Facebook Messages</span>
             </Link>
           </li>
           <li>
@@ -66,7 +66,7 @@ export default function NavBar() {
                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#3ACE01" d="M108.103 208.954h27.952c3.976 0 7.228-3.253 7.228-7.229v-.603c0-3.976-3.252-7.228-7.228-7.228h-20.121v-45.779c0-3.976-3.252-7.228-7.228-7.228h-.603c-3.976 0-7.228 3.252-7.228 7.228v53.609c0 3.977 3.252 7.23 7.228 7.23zm173.205-33.603v-.603c0-3.976-3.253-7.228-7.229-7.228h-20.12v-11.445h20.12c3.976 0 7.229-3.252 7.229-7.228v-.603c0-3.976-3.253-7.228-7.229-7.228h-27.952c-3.976 0-7.228 3.252-7.228 7.228v53.609c0 3.976 3.252 7.229 7.228 7.229h27.952c3.976 0 7.229-3.253 7.229-7.229v-.603c0-3.976-3.253-7.228-7.229-7.228h-20.12v-11.445h20.12c3.976.002 7.229-3.251 7.229-7.226zm-53.755 31.448l.002-.003a7.207 7.207 0 0 0 2.09-5.07v-53.609c0-3.976-3.252-7.228-7.229-7.228h-.603c-3.976 0-7.228 3.252-7.228 7.228v31.469l-26.126-35.042c-1.248-2.179-3.598-3.655-6.276-3.655h-.603c-3.976 0-7.229 3.252-7.229 7.228v53.609c0 3.976 3.252 7.229 7.229 7.229h.603c3.976 0 7.228-3.253 7.228-7.229v-32.058l26.314 35.941c.162.252.339.494.53.724l.001.002c.723.986 1.712 1.662 2.814 2.075.847.35 1.773.544 2.742.544h.603a7.162 7.162 0 0 0 3.377-.844c.723-.344 1.332-.788 1.761-1.311zm-71.208 2.155h.603c3.976 0 7.228-3.253 7.228-7.229v-53.609c0-3.976-3.252-7.228-7.228-7.228h-.603c-3.976 0-7.229 3.252-7.229 7.228v53.609c0 3.976 3.253 7.229 7.229 7.229z" />
               </svg>
 
-              <span class="flex-1 ms-3 whitespace-nowrap">Line Messages</span>
+              <span className="flex-1 ms-3 whitespace-nowrap">Line Messages</span>
             </Link>
           </li>
 
@@ -82,15 +82,15 @@ export default function NavBar() {
                 <path d="M7 12H17" stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
                 <path d="M3 10.4167C3 7.21907 3 5.62028 3.37752 5.08241C3.75503 4.54454 5.25832 4.02996 8.26491 3.00079L8.83772 2.80472C10.405 2.26824 11.1886 2 12 2C12.8114 2 13.595 2.26824 15.1623 2.80472L15.7351 3.00079C18.7417 4.02996 20.245 4.54454 20.6225 5.08241C21 5.62028 21 7.21907 21 10.4167C21 10.8996 21 11.4234 21 11.9914C21 14.4963 20.1632 16.4284 19 17.9041M3.19284 14C4.05026 18.2984 7.57641 20.5129 9.89856 21.5273C10.62 21.8424 10.9807 22 12 22C13.0193 22 13.38 21.8424 14.1014 21.5273C14.6796 21.2747 15.3324 20.9478 16 20.5328" stroke="#fff" stroke-width="1.5" stroke-linecap="round" />
               </svg>
-              <span class="flex-1 ms-3 whitespace-nowrap">Privacy Policy</span>
+              <span className="flex-1 ms-3 whitespace-nowrap">Privacy Policy</span>
             </Link>
           </li>
           <li>
-            <a class="flex items-center p-2 text-gray-900 cursor-pointer rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onClick={logout}>
-              <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+            <a className="flex items-center p-2 text-gray-900 cursor-pointer rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onClick={logout}>
+              <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
                 <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
               </svg>
-              <span class="flex-1 ms-3 whitespace-nowrap">Log Out</span>
+              <span className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
             </a>
           </li>
 

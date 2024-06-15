@@ -23,10 +23,10 @@ export default function MessagePage() {
   }
 
   return (
-    <div class="grid grid-cols-3 gap-4 h-full py-3 ">
-      <div class="flex flex-col rounded">
-        <div class="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-          <div class="divide-y divide-gray-200">
+    <div className="grid grid-cols-3 gap-4 h-full py-3 ">
+      <div className="flex flex-col rounded">
+        <div className="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+          <div className="divide-y divide-gray-200">
             {msgData?.map((item) => (
               <div
                 className={`${current?._id == item._id ? 'bg-neutral-600 last:rounded-b first:rounded-t' : ''}`}
@@ -44,7 +44,7 @@ export default function MessagePage() {
         </div>
       </div>
       {current && (
-        <div class="flex items-center col-span-2 justify-center rounded shadow-md bg-white bg-clip-border mb-3">
+        <div className="flex items-center col-span-2 justify-center rounded shadow-md bg-white bg-clip-border mb-3">
           <FBMessageList data={current.messages} />
         </div>
       )}

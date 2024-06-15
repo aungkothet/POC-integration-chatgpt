@@ -2,7 +2,7 @@ import ChatItem from "./ChatMessageItemComponent";
 
 export default function LineMessageList({ data }) {
   return (
-    <div class="h-screen overflow-y-auto p-4 w-full">
+    <div className="h-screen overflow-y-auto p-4 w-full">
       {data.map((msg) => (
         <ChatItem
           key={msg._id}

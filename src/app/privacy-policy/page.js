@@ -1,14 +1,14 @@
 export default function Privacy() {
   return (
-    <div class="page">
-      <div class="header">
-        <div class="container">
-          <p class="title">Privacy Policy for FormaticX</p>
+    <div className="page">
+      <div className="header">
+        <div className="container">
+          <p className="title">Privacy Policy for FormaticX</p>
         </div>
       </div>
-      <div class="translations-content-container">
-        <div class="container">
-          <div class="tab-content translations-content-item en visible" id="en">
+      <div className="translations-content-container">
+        <div className="container">
+          <div className="tab-content translations-content-item en visible" id="en">
             <h1>Privacy Policy</h1>
             <p>Last updated: June 15, 2024</p>
             <p>
