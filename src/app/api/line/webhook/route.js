@@ -1,12 +1,12 @@
-import getAutomateResponse from '@/_actions/getChatGPTResponse';
-import sendLineReply from '@/_actions/sendLineReplyMessage';
+import getAutomateResponse from '@/_actions/getChatGPTResponse'
+import sendLineReply from '@/_actions/sendLineReplyMessage'
 import LineMessageModel from '@/models/LineMessageModel'
 
 export async function POST(req, res) {
   const events = await req.json()
   for (const event of events.events) {
     if (event.type === 'message' && event.message.type === 'text') {
-      console.log('Received message event: ', event);
+      console.log('Received message event: ', event)
       /* event data sample 
       {
         type: 'message',
@@ -24,27 +24,25 @@ export async function POST(req, res) {
         mode: 'active'
       }
       */
-      console.log('Received message:', event.message.text);
+      console.log('Received message:', event.message.text)
       if (!event.deliveryContext.isRedelivery) {
         // Do save message to db here.
         const newLineMessage = new LineMessageModel({
           from: event.source.userId,
           to: 'System',
-          Chats: event
-        });
-        const savedModel = await newLineMessage.save();
+          Chats: event,
+        })
+        const savedModel = await newLineMessage.save()
         // send request to ChatGPT
-        const gptChoicesAry = await getAutomateResponse(event.message.text)
-        console.log("webhook: ", gptChoicesAry);
-        let replyMessages = "";
-        gptChoicesAry.forEach((choice) => {
-          replyMessages += choice.message.content;
-        });
+        const replyMessages = await getAutomateResponse(event.message.text)
+        // console.log("webhook: ", gptChoicesAry);
         // send response back to user
-        const sendLineReplyResponse = await sendLineReply(event.source.userId, replyMessages);
+        const sendLineReplyResponse = await sendLineReply(
+          event.source.userId,
+          replyMessages
+        )
       }
       // console.log(sendLineReplyResponse);
-
     }
   }
   return Response.json({ status: 200, message: 'OK.' })
