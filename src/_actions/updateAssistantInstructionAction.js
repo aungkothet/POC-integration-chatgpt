@@ -1,14 +1,14 @@
 'use server'
 import OpenAI from 'openai'
 
-// const openai = new OpenAI({ apiKey: process.env.OPEN_AI_ACCESS_TOKEN })
+const openai = new OpenAI({ apiKey: process.env.OPEN_AI_ACCESS_TOKEN })
 
 export default async function updateInstruction(assistantId, instruction, top, temp) {
-  // const myUpdatedAssistant = await openai.beta.assistants.update(assistantId, {
-  //   instructions: instruction,
-  //   temperature: parseFloat(temp),
-  //   top_p: parseFloat(top)
-  // })
+  const myUpdatedAssistant = await openai.beta.assistants.update(assistantId, {
+    instructions: instruction,
+    temperature: parseFloat(temp),
+    top_p: parseFloat(top)
+  })
 
   // console.log('inside promise myUpdatedAssistant: ', myUpdatedAssistant)
   /*
@@ -28,6 +28,5 @@ export default async function updateInstruction(assistantId, instruction, top, t
   response_format: 'auto'
 }
 */
-  return {data:{}, message:'Success'}
-  // return {data:myUpdatedAssistant, message:'Success'}
+  return {data:myUpdatedAssistant, message:'Success'}
 }
