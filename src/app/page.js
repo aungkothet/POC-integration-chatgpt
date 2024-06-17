@@ -74,7 +74,10 @@ export default function Home() {
                     required
                     value={lineMessage.message}
                     onChange={(e) =>
-                      setLineMessage({ ...lineMessage, message: e.target.value })
+                      setLineMessage({
+                        ...lineMessage,
+                        message: e.target.value,
+                      })
                     }
                   />
                 </div>

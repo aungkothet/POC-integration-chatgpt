@@ -52,13 +52,8 @@ export async function POST(req, res) {
       });
       const savedModel = await newFbMessage.save();
       // // send request to ChatGPT
-      const gptChoicesAry = await getAutomateResponse(messageOuter.message.text)
+      replyMessages = await getAutomateResponse(messageOuter.message.text)
       // // console.log("FB webhook: ", gptChoicesAry);
-  
-      replyMessages = "";
-      gptChoicesAry.forEach((choice) => {
-        replyMessages += choice.message.content;
-      });
     }
     
     // // console.log(replyMessages);
