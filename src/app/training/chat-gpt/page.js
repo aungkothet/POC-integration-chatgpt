@@ -39,6 +39,7 @@ export default function ChatGPTPage() {
         top,
         temp
       )
+      console.log(response)
       alert('Update Success')
     } catch (e) {
       console.log(e)
