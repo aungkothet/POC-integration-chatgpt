@@ -32,7 +32,7 @@ export default function MessageComponent({ text, time, platform, userId }) {
           <h6 className="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
             {profile.displayName}
           </h6>
-          <p className="block max-h-10 overflow-hidden font-sans text-sm font-light leading-normal text-gray-700 antialiased">
+          <p className="block max-h-10 overflow-hidden font-sans text-sm font-light leading-normal text-gray-700 antialiased whitespace-pre-wrap break-all">
             {text}
           </p>
         </div>
