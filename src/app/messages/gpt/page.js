@@ -42,10 +42,12 @@ export default function MessagePage() {
       threadid: thread_id,
       from: 'User',
       to: 'Amy',
-      Chats: {
-        text: message,
-        time: new Date(),
-      },
+      Chats: [
+        {
+          text: message,
+          time: new Date(),
+        },
+      ],
     }
 
     setMessage('') // Clear input immediately after sending
@@ -60,10 +62,12 @@ export default function MessagePage() {
         threadid: thread_id,
         to: 'User',
         from: 'Amy',
-        Chats: {
-          text: replyMessages,
-          time: new Date(),
-        },
+        Chats: [
+          {
+            text: replyMessages,
+            time: new Date(),
+          },
+        ],
       }
       setLoading(false)
       setCurrent((prevMessages) => [...prevMessages, newReplyMessage])
@@ -116,8 +120,8 @@ export default function MessagePage() {
                 key={item._id}
               >
                 <MessageComponent
-                  text={item.lastMessage.Chats.text}
-                  time={item.lastMessage.Chats.time}
+                  text={item.lastMessage.Chats[0].text}
+                  time={item.lastMessage.Chats[0].time}
                   platform="facebook"
                   userId={item._id}
                 />
@@ -138,8 +142,8 @@ export default function MessagePage() {
               <ChatItem
                 key={msg._id}
                 isUser={msg.from == 'Amy'}
-                text={msg.Chats.text}
-                time={msg.Chats.time}
+                text={msg.Chats[0].text}
+                time={msg.Chats[0].time}
                 id={msg._id}
               />
             ))}

@@ -26,11 +26,14 @@ export default async function getAutomateResponse(question, thread_id = null) {
     from: 'user',
     to: 'Amy',
     threadid: thread_id,
-    Chats: {
-      time: new Date(),
-      text: question,
-    },
+    Chats: [
+      {
+        time: new Date(),
+        text: question,
+      },
+    ],
   }
+  console.log(Message)
   const newMessage = new MessageModel(Message)
   await newMessage.save()
 
@@ -56,10 +59,12 @@ export default async function getAutomateResponse(question, thread_id = null) {
     from: 'Amy',
     to: 'User',
     threadid: thread_id,
-    Chats: {
-      time: new Date(),
-      text: responseMsg,
-    },
+    Chats: [
+      {
+        time: new Date(),
+        text: responseMsg,
+      },
+    ],
   }
   const responseMessage = new MessageModel(ResponseMessage)
   await responseMessage.save()
